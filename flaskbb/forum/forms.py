@@ -18,13 +18,9 @@ from flaskbb.forum.models import Topic, Post, Report, Forum
 from flaskbb.user.models import User
 import os, random, datetime
 from flask import request, make_response, url_for, current_app
-####
+#######
 from flask_wtf import Form
-
-#class EditForm(FlaskForm,CKEditor):
-#	newpost = TextAreaField()
-#	submit = SubmitField('submmit')
-####
+#######
 
 class CKEditor(object):
     def __init__(self):
