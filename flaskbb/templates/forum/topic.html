@@ -146,14 +146,24 @@
     {% include theme('forum/topic_controls.html') %}
     {% from theme("macros.html") import render_field, render_quickreply, render_submit_field %}
     {% if form %}
+	
+	
     <form class="form" action="#" method="post">
         {{ form.hidden_tag() }}
         <div class="row">
             <div class="col-md-offset-2 col-sm-offset-3 col-md-10 col-sm-9 col-xs-12">
                 <div class="editor-box">
                     <div class="editor quickreply">
-                            {{ render_quickreply(form.content, div_class="new-message", rows=7, cols=75, placeholder="", **{'data-provide': 'markdown', 'data-autofocus': 'false', 'class': 'flaskbb-editor'}) }}
+                            {{ render_quickreply(form.content, div_class="new-message", rows=7, cols=75, placeholder="", **{'data-provide': 'ckeditor', 'data-autofocus': 'false', 'class': 'ckeditor'}) }}
                     </div>
+					<!--
+					<script type="text/javascript" src="{{ url_for('static', filename='ckeditor/ckeditor.js') }}">
+						CKEDITOR.replace("new-post", {
+						filebrowserUploadUrl: '/ckupload/',
+						filebrowserImageUploadUrl: '/ckupload/'
+						});
+					</script>
+					-->
                     <div class="editor-submit">
                         {{ render_submit_field(form.submit, input_class="btn btn-success pull-right") }}
                     </div>
@@ -161,6 +171,7 @@
             </div>
         </div>
     </form>
+
     {% include theme('editor_help.html') %}
     {% endif %}
 

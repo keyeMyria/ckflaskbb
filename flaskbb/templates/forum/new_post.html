@@ -19,22 +19,7 @@
             {% endif %}
         </li>
     </ol>
-	<div class="form">
-		<form method="post">
-		{{ form.hidden_tag() }}
-		{{ form.content(class='ckeditor') }}
-					<script type="text/javascript">
-					   CKEDITOR.replace(
-						   "content", {
-							   filebrowserUploadUrl: '/ckupload/'
-						   }
-					   );</script>
-		{{ form.submit }}
-		</form>
-	</div>
 
-
-<!--
     <form class="form-horizontal" role="form" method="post">
         {{ form.hidden_tag() }}
         <div class="panel page-panel">
@@ -56,32 +41,21 @@
                     <div class="form-group">
                         <div class="col-md-12 col-sm-12 col-xs-12">
                             <div class="editor-box">
-                                <div class="editor" id="newpost">
-                                    {{ render_quickreply(form.content, div_class="new-message", rows=7, cols=75, placeholder="", **{'data-provide': 'markdown', 'data-autofocus': 'false','class': 'ckeditor' }) }}									
-								</div>
-
-								<script type="text/javascript">
-									CKEDITOR.replace('newpost',{filebrowserUploadUrl:'/ckupload/',});
-								</script>									
-	
-                                <div class="editor-submit">
+                                <div class="editor">
+                                    {{ render_quickreply(form.content, div_class="new-message", rows=7, cols=75, placeholder="", **{'data-provide': 'markdown', 'data-autofocus': 'false', 'class': 'flask-editor'}) }}
+                                </div>
+								
+								<div class="editor-submit">
                                     {{ render_submit_field(form.submit, input_class="btn btn-success pull-right") }}
-                                </div>														
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
--->
-
-	{#      
-		{% include theme('editor_help.html') %}
-	#}
-<!--    </form>
-		-->
-
-
+        {% include theme('editor_help.html') %}
+    </form>
 </div>
 
 {% endblock %}
