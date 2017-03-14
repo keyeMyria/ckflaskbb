@@ -29,59 +29,44 @@ running instance of FlaskBB. Use demo//demo as login for the test user.
 For a complete installation guide please visit the installation documentation
 [here](https://flaskbb.readthedocs.org/en/latest/installation.html).
 
-This is how you set up an development instance of FlaskBB:
+###Create a virtualenv
 
-* Create a virtualenv
-* Configuration
-    * `make devconfig`
-* Install dependencies and FlaskBB
+###Configuration
+
+   
+
+   * `flaskbb makeconfig`
+
+   you should answer a lot of questions for config
+
+   If you want to set up an development instance of FlaskBB:
+
+      * `make devconfig`
+
+   the debug toolbar will bring some cookies and freshing problem, 
+   so you need to open the flaskbb.cfg and set the debug=false.
+
+###Install dependencies and FlaskBB
+
     * `make install`
-* Run the development server
+    
+   if pillow installed fail under unbuntu 14.04,you should install below list first.
+   
+   * `sudo apt-get install python-dev libjpeg8 libjpeg62-dev libfreetype6 libfreetype6-dev`
+    
+   Any time if you only need to config the database config,you may:
+
+   * `flaskbb --config ./flaskbb.cfg install`
+
+###Run the server
+
     * `make run`
-* Visit [localhost:5000](http://localhost:5000)
-
-Quickstart
-
-For a complete installation guide please visit the installation documentation here.
-
-This is how you set up an development instance of FlaskBB:
-
-Create a virtualenv
-
-Install dependencies and FlaskBB
-
-make install
-if pillow installed failiar,you should install below list first.
-
-sudo apt-get install python-dev libjpeg8 libjpeg62-dev libfreetype6 libfreetype6-dev
-
-Configuration
-
-for normal and production enviroment you need to
-
-flaskbb makeconfig
-you should answer a lot of questions for config
-
-for quickly development config you may:
-
-make devconfig
-the debug toolbar will bring some cookies and freshing problem, so you need to open the flaskbb.cfg and set the debug=false.
-
-install database
-
-any time if you only need to config the database config,you may:
-
-flaskbb --config ./flaskbb.cfg install
-Run the development server
-
-make run
-Visit localhost:5000
-
+    
+###Visit [localhost:5000](http://localhost:5000)
 
 ## License
 
-FlaskBB is licensed under the [BSD License](https://github.com/sh4nks/flaskbb/blob/master/LICENSE).
-
+ckFlaskBB is licensed under the [BSD License](https://github.com/battlecat/ckflaskbb/blob/master/LICENSE).
 
 # Links
 
