@@ -29,9 +29,9 @@ running instance of FlaskBB. Use demo//demo as login for the test user.
 For a complete installation guide please visit the installation documentation
 [here](https://flaskbb.readthedocs.org/en/latest/installation.html).
 
-###Create a virtualenv
+###1.Create a virtualenv
 
-###Configuration
+###2.Configuration
    
    You need to setup the config file with:
 
@@ -46,7 +46,7 @@ For a complete installation guide please visit the installation documentation
    the debug toolbar will bring some cookies and freshing problem, 
    so you need to open the flaskbb.cfg and set the debug=false.
 
-###Install dependencies and FlaskBB
+###3.Install dependencies and FlaskBB
 
     * `make install`
     
@@ -58,11 +58,11 @@ For a complete installation guide please visit the installation documentation
 
    * `flaskbb --config ./flaskbb.cfg install`
 
-###Run the server
+###4.Run the server
 
     * `make run`
     
-###Visit [localhost:5000](http://localhost:5000)
+###5.Visit [localhost:5000](http://localhost:5000)
 
 ## License
 
