@@ -1,17 +1,18 @@
-# FlaskBB
+# ckFlaskBB
 
 [![Build Status](https://travis-ci.org/sh4nks/flaskbb.svg?branch=master)](https://travis-ci.org/sh4nks/flaskbb)
 [![Coverage Status](https://coveralls.io/repos/sh4nks/flaskbb/badge.png)](https://coveralls.io/r/sh4nks/flaskbb)
 [![Code Health](https://landscape.io/github/sh4nks/flaskbb/master/landscape.svg?style=flat)](https://landscape.io/github/sh4nks/flaskbb/master)
 [![License](https://img.shields.io/badge/license-BSD-blue.svg)](https://flaskbb.org)
 
-*FlaskBB is a Forum Software written in Python using the micro framework Flask.*
+*ckFlaskBB is a Forum Software written in Python using the micro framework Flask with ckeditor and markdown plugins.*
 
 Currently, following features are implemented:
 
 * Private Messages
 * Admin Interface
 * Group based permissions
+* WYSIWYG ckeditor with Markdown support
 * Markdown Support
 * Topic Tracker
 * Unread Topics/Forums
@@ -23,7 +24,6 @@ Currently, following features are implemented:
 Checkout the [FlaskBB Forums](https://forums.flaskbb.org) to see an actual
 running instance of FlaskBB. Use demo//demo as login for the test user.
 
-
 ## Quickstart
 
 For a complete installation guide please visit the installation documentation
@@ -32,8 +32,8 @@ For a complete installation guide please visit the installation documentation
 ###Create a virtualenv
 
 ###Configuration
-
    
+   You need to setup the config file with:
 
    * `flaskbb makeconfig`
 
