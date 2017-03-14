@@ -37,10 +37,7 @@ For a complete installation guide please visit the installation documentation
 
 		Or you can set up an development instance of FlaskBB with:
 
-		`make devconfig`
-
-		If the debug toolbar bring some cookies and freshing problem, 
-		you can to open the flaskbb.cfg and set the `debug=false`.
+		`make devconfig`		
 
 	* 3.Install dependencies and FlaskBB
 
@@ -64,6 +61,14 @@ For a complete installation guide please visit the installation documentation
 		`make run`
     
 	* 5.Visit [localhost:5000](http://localhost:5000)
+
+	* Note:
+
+		If the debug toolbar bring some cookies and freshing problem, 
+		you can to open the flaskbb.cfg and set the `debug=false`.
+
+		If the ckeditor upload plugins happened to csrf error like bad request something,
+		you need to change the flaskbb.cfg file for `csrf=False`
 
 ## License
 
