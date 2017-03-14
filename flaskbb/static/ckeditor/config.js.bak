@@ -38,4 +38,7 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// add this plugin
 	config.extraPlugins = 'markdown'; 
+
+	// file upload url
+    config.filebrowserUploadUrl = '/ckupload/?_token={{csrf_token()}}';
 };

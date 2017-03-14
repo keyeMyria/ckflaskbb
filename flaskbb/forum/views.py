@@ -62,7 +62,7 @@ def ckupload():
         fname, fext = os.path.splitext(fileobj.filename)
         rnd_name = '%s%s' % (gen_rnd_filename(), fext)
         filepath = os.path.join(current_app.static_folder, 'upload', rnd_name)
-        # 检查路径是否存在，不存在则创建
+        # check the path exists or create a new path
         dirname = os.path.dirname(filepath)
         if not os.path.exists(dirname):
             try:
@@ -77,8 +77,8 @@ def ckupload():
     else:
         error = 'post error'
     res = """<script type="text/javascript">
-  window.parent.CKEDITOR.tools.callFunction(%s, '%s', '%s');
-</script>""" % (callback, url, error)
+		window.parent.CKEDITOR.tools.callFunction(%s, '%s', '%s');
+		</script>""" % (callback, url, error)
     response = make_response(res)
     response.headers["Content-Type"] = "text/html"
     return response

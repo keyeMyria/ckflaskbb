@@ -68,7 +68,7 @@ For a complete installation guide please visit the installation documentation
 	you can to open the flaskbb.cfg and set the `debug=false`.
 
 	If the ckeditor upload plugins happened to csrf error like bad request something,
-	you need to change the flaskbb.cfg file for `csrf=False`
+	you need to change the flaskbb.cfg file for `WTF_CSRF_ENABLED = False`
 
 ## License
 

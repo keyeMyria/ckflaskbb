@@ -16,7 +16,9 @@ from flask_babelplus import lazy_gettext as _
 
 from flaskbb.forum.models import Topic, Post, Report, Forum
 from flaskbb.user.models import User
-
+###
+#from flask.ext.wtf import Form
+###
 
 class QuickreplyForm(FlaskForm):
     content = TextAreaField(_("Quick reply"), validators=[
