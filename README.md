@@ -40,6 +40,43 @@ This is how you set up an development instance of FlaskBB:
     * `make run`
 * Visit [localhost:5000](http://localhost:5000)
 
+Quickstart
+
+For a complete installation guide please visit the installation documentation here.
+
+This is how you set up an development instance of FlaskBB:
+
+Create a virtualenv
+
+Install dependencies and FlaskBB
+
+make install
+if pillow installed failiar,you should install below list first.
+
+sudo apt-get install python-dev libjpeg8 libjpeg62-dev libfreetype6 libfreetype6-dev
+
+Configuration
+
+for normal and production enviroment you need to
+
+flaskbb makeconfig
+you should answer a lot of questions for config
+
+for quickly development config you may:
+
+make devconfig
+the debug toolbar will bring some cookies and freshing problem, so you need to open the flaskbb.cfg and set the debug=false.
+
+install database
+
+any time if you only need to config the database config,you may:
+
+flaskbb --config ./flaskbb.cfg install
+Run the development server
+
+make run
+Visit localhost:5000
+
 
 ## License
 
