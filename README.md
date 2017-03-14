@@ -29,46 +29,46 @@ running instance of FlaskBB. Use demo//demo as login for the test user.
 For a complete installation guide please visit the installation documentation
 [here](https://flaskbb.readthedocs.org/en/latest/installation.html).
 
-	* 1.Create a virtualenv
+* 1.Create a virtualenv
 
-	* 2.Make Configuration file with:
+* 2.Make Configuration file with:
    
-		`flaskbb makeconfig`
+	`flaskbb makeconfig`
 
-		Or you can set up an development instance of FlaskBB with:
+	Or you can set up an development instance of FlaskBB with:
 
-		`make devconfig`		
+	`make devconfig`		
 
-	* 3.Install dependencies and FlaskBB
+* 3.Install dependencies and FlaskBB
 
-		`make install`
+	`make install`
     
-		if pillow installed fail under unbuntu 14.04,you should install below list first.
+	if pillow installed fail under unbuntu 14.04,you should install below list first.
    
-		`sudo apt-get install python-dev libjpeg8 libjpeg62-dev libfreetype6 libfreetype6-dev`
+	`sudo apt-get install python-dev libjpeg8 libjpeg62-dev libfreetype6 libfreetype6-dev`
     
-		Any time if you only need to config the database config,you may:
+	Any time if you only need to config the database config,you may:
 
-		`flaskbb --config ./flaskbb.cfg install`
+	`flaskbb --config ./flaskbb.cfg install`
 
-		If you encoutered the 6379 port error with redis service under Ubuntu server,
-		you need to restart the redis server:
+	If you encoutered the 6379 port error with redis service under Ubuntu server,
+	you need to restart the redis server:
 
-		`/etc/init.d/redis-server restart`
+	`/etc/init.d/redis-server restart`
 
-	* 4.Run the server
+* 4.Run the server
 
-		`make run`
+	`make run`
     
-	* 5.Visit [localhost:5000](http://localhost:5000)
+* 5.Visit [localhost:5000](http://localhost:5000)
 
-	* Note:
+* Note:
 
-		If the debug toolbar bring some cookies and freshing problem, 
-		you can to open the flaskbb.cfg and set the `debug=false`.
+	If the debug toolbar bring some cookies and freshing problem, 
+	you can to open the flaskbb.cfg and set the `debug=false`.
 
-		If the ckeditor upload plugins happened to csrf error like bad request something,
-		you need to change the flaskbb.cfg file for `csrf=False`
+	If the ckeditor upload plugins happened to csrf error like bad request something,
+	you need to change the flaskbb.cfg file for `csrf=False`
 
 ## License
 
