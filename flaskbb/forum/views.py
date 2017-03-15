@@ -35,8 +35,9 @@ from flaskbb.user.models import User
 
 forum = Blueprint("forum", __name__)
 
-################
+################CSRFProtect
 
+from flask_wtf.csrf import CsrfProtect
 import os
 import re
 import json
@@ -47,13 +48,17 @@ from flask import Flask, make_response
 #from flask import Flask,render_template, make_response
 #app = Flask(__name__)
 
+
+csrf = CsrfProtect()
 def gen_rnd_filename():
     filename_prefix = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
     return '%s%s' % (filename_prefix, str(random.randrange(1000, 10000)))
 
+@csrf.exempt
 @forum.route('/ckupload/', methods=['POST', 'OPTIONS'])
 def ckupload():
     """CKEditor file upload"""
+
     error = ''
     url = ''
     callback = request.args.get("CKEditorFuncNum")
@@ -76,12 +81,14 @@ def ckupload():
             url = url_for('static', filename='%s/%s' % ('upload', rnd_name))
     else:
         error = 'post error'
-    res = """<script type="text/javascript">
+	res = """<script type="text/javascript">
 		window.parent.CKEDITOR.tools.callFunction(%s, '%s', '%s');
 		</script>""" % (callback, url, error)
-    response = make_response(res)
-    response.headers["Content-Type"] = "text/html"
-    return response
+	response = make_response(res)
+	response.headers["Content-Type"] = "text/html"
+	response.headers["csrf-token"] = "{{csrf_token()}}"
+    
+	return response
 
 ################
 
@@ -149,7 +156,7 @@ def view_forum(forum_id, slug=None):
         topics=topics, forumsread=forumsread,
     )
 
-
+@csrf.exempt
 @forum.route("/topic/<int:topic_id>", methods=["POST", "GET"])
 @forum.route("/topic/<int:topic_id>-<slug>", methods=["POST", "GET"])
 @allows.requires(CanAccessTopic())

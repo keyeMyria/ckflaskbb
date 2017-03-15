@@ -41,4 +41,7 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// file upload url
     config.filebrowserUploadUrl = '/ckupload/';
+
+	// fullpage of HTML
+	config.fullPage = true;
 };
