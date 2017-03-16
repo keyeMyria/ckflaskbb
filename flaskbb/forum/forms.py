@@ -17,17 +17,17 @@ from flask_babelplus import lazy_gettext as _
 from flaskbb.forum.models import Topic, Post, Report, Forum
 from flaskbb.user.models import User
 
-###
-#from flask.ext.wtf import Form
-###
 
-class QuickreplyForm(FlaskForm):	
-	content = TextAreaField(_("Quick reply"), validators=[
-    DataRequired(message=_("You cannot post a reply without content."))])
-	submit = SubmitField(_("Reply"))
-	def save(self, user, topic):
-		post = Post(content=self.content.data)
-		return post.save(user=user, topic=topic)
+class QuickreplyForm(FlaskForm):
+    content = TextAreaField(_("Quick reply"), validators=[
+        DataRequired(message=_("You cannot post a reply without content."))])
+
+    submit = SubmitField(_("Reply"))
+
+    def save(self, user, topic):
+        post = Post(content=self.content.data)
+        return post.save(user=user, topic=topic)
+
 
 class ReplyForm(FlaskForm):
     content = TextAreaField(_("Content"), validators=[
