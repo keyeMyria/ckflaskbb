@@ -47,16 +47,15 @@ import urllib
 import datetime
 from flask import Flask, make_response
 #from flask import Flask,render_template, make_response
-#app = Flask(__name__)
+#app = Flask(__name__)@csrf.exempt
 
 def gen_rnd_filename():
     filename_prefix = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
     return '%s%s' % (filename_prefix, str(random.randrange(1000, 10000)))
 
 @forum.route('/ckupload/', methods=['POST', 'OPTIONS'])
-@csrf.exempt
 def ckupload():
-    """CKEditor file upload"""
+    """CKEditor file upload,this is callback not upload"""
     error = ''
     url = ''
     callback = request.args.get("CKEditorFuncNum")
