@@ -35,10 +35,16 @@ CKEDITOR.editorConfig = function( config ) {
 
 	// Simplify the dialog windows.
 	config.removeDialogTabs = 'image:advanced;link:advanced';
-
+	
 	// add this plugin
 	config.extraPlugins = 'markdown'; 
 
 	// file upload url
     config.filebrowserUploadUrl = '/ckupload/';
+	
+	config.extraPlugins = 'uploadimage';
+	
+	config.uploadUrl = '/ckupload/';
+	
+	
 };

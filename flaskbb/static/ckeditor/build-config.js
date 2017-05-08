@@ -13,10 +13,10 @@
  * (1) http://ckeditor.com/builder
  *     Visit online builder to build CKEditor from scratch.
  *
- * (2) http://ckeditor.com/builder/35f2681a6883b3efa12d3ca0d9544570
+ * (2) http://ckeditor.com/builder/ecb5819304c9c966aae2961cdadd6533
  *     Visit online builder to build CKEditor, starting with the same setup as before.
  *
- * (3) http://ckeditor.com/builder/download/35f2681a6883b3efa12d3ca0d9544570
+ * (3) http://ckeditor.com/builder/download/ecb5819304c9c966aae2961cdadd6533
  *     Straight download link to the latest version of CKEditor (Optimized) with the same setup as before.
  *
  * NOTE:
@@ -25,7 +25,7 @@
  */
 
 var CKBUILDER_CONFIG = {
-	skin: 'kama',
+	skin: 'office2013',
 	preset: 'standard',
 	ignore: [
 		'.DS_Store',
@@ -49,8 +49,6 @@ var CKBUILDER_CONFIG = {
 		'tests'
 	],
 	plugins : {
-		'a11yhelp' : 1,
-		'about' : 1,
 		'basicstyles' : 1,
 		'blockquote' : 1,
 		'clipboard' : 1,
@@ -74,23 +72,18 @@ var CKBUILDER_CONFIG = {
 		'pastetext' : 1,
 		'removeformat' : 1,
 		'resize' : 1,
-		'scayt' : 1,
 		'showborders' : 1,
 		'sourcearea' : 1,
-		'specialchar' : 1,
 		'stylescombo' : 1,
 		'tab' : 1,
 		'table' : 1,
 		'tabletools' : 1,
 		'toolbar' : 1,
 		'undo' : 1,
-		'wsc' : 1,
 		'wysiwygarea' : 1
 	},
 	languages : {
 		'en' : 1,
-		'fr' : 1,
-		'zh' : 1,
 		'zh-cn' : 1
 	}
 };

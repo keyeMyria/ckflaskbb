@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+﻿# -*- coding: utf-8 -*-
 """
     flaskbb.forum.forms
     ~~~~~~~~~~~~~~~~~~~
@@ -16,8 +16,77 @@ from flask_babelplus import lazy_gettext as _
 
 from flaskbb.forum.models import Topic, Post, Report, Forum
 from flaskbb.user.models import User
+from flask import request,make_response,current_app,url_for
+import os, random, datetime
 
+from flask_wtf.file import FileField, FileAllowed, FileRequired
+#import flask_uploads
 
+#from Flask_Uploads import UploadSet, IMAGES
+#images = UploadSet('images', IMAGES)
+
+#form = FlaskForm(csrf_enabled=False)
+
+class UploadForm(FlaskForm):
+	photo = FileField('image', validators=[
+        FileRequired(),
+		FileAllowed(['jpg', 'png'], 'Images only!')       
+	])
+
+#	FileAllowed(images, 'Images only!')
+	
+class CKEditor(object):
+    def __init__(self):
+        pass
+
+    def gen_rnd_filename(self):
+        """generate a random filename"""
+        filename_prefix = datetime.datetime.now().strftime("%Y%m%d%H%M%S")
+        return "%s%s" % (filename_prefix, str(random.randrange(1000, 10000)))
+
+    def upload(self, endpoint=current_app):
+        """img or file upload methods"""
+        error = ''
+        url = ''
+        callback = request.args.get("CKEditorFuncNum")
+
+        if request.method == 'POST' and 'upload' in request.files:
+            # /static/upload
+            fileobj = request.files['upload']
+            fname, fext = os.path.splitext(fileobj.filename)
+            rnd_name = '%s%s' % (self.gen_rnd_filename(), fext)
+
+            filepath = os.path.join(endpoint.static_folder, 'upload', rnd_name)
+
+            dirname = os.path.dirname(filepath)
+            if not os.path.exists(dirname):
+                try:
+                    os.makedirs(dirname)
+                except:
+                    error = 'ERROR_CREATE_DIR'
+            elif not os.access(dirname, os.W_OK):
+                    error = 'ERROR_DIR_NOT_WRITEABLE'
+            if not error:
+                fileobj.save(filepath)
+                url = url_for('static', filename='%s/%s' % ('upload', rnd_name))
+        else:
+            error = 'post error'
+
+        res = """
+                <script type="text/javascript">
+                window.parent.CKEDITOR.tools.callFunction(%s, '%s', '%s');
+                </script>
+             """ % (callback, url, error)
+
+        response = make_response(res)
+        response.headers["Content-Type"] = "text/html"
+        return response
+
+class PostForm(FlaskForm, CKEditor):
+    body = TextAreaField(u'编辑你的主题')
+    submit = SubmitField('submit')		
+		
+		
 class QuickreplyForm(FlaskForm):
     content = TextAreaField(_("Quick reply"), validators=[
         DataRequired(message=_("You cannot post a reply without content."))])

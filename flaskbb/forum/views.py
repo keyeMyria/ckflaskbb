@@ -30,62 +30,32 @@ from flaskbb.utils.requirements import (CanAccessForum, CanAccessTopic,
 from flaskbb.forum.models import (Category, Forum, Topic, Post, ForumsRead,
                                   TopicsRead)
 from flaskbb.forum.forms import (NewTopicForm, QuickreplyForm, ReplyForm,
-                                 ReportForm, SearchPageForm, UserSearchForm)
+                                 ReportForm, SearchPageForm, UserSearchForm,
+								 PostForm,UploadForm)
 from flaskbb.user.models import User
+
+from werkzeug.utils import secure_filename
 
 forum = Blueprint("forum", __name__)
 
-################
-from flask_wtf.csrf import CSRFProtect
+@forum.route('/upload', methods=['GET', 'POST'])
+def upload():
+	form = UploadForm()
+  	if form.validate_on_submit():
+		f = form.photo.data
+		filename = secure_filename(f.filename)
+		f.save(os.path.join(
+			app.instance_path, 'upload', filename
+		))
+		return redirect(url_for('index'))
 
-csrf = CSRFProtect()
-import os
-import re
-import json
-import random
-import urllib
-import datetime
-from flask import Flask, make_response
-#from flask import Flask,render_template, make_response
-#app = Flask(__name__)@csrf.exempt
-
-def gen_rnd_filename():
-    filename_prefix = datetime.datetime.now().strftime('%Y%m%d%H%M%S')
-    return '%s%s' % (filename_prefix, str(random.randrange(1000, 10000)))
+	return render_template("forum/upload.html", form=form)  
 
 @forum.route('/ckupload/', methods=['POST', 'OPTIONS'])
 def ckupload():
-    """CKEditor file upload,this is callback not upload"""
-    error = ''
-    url = ''
-    callback = request.args.get("CKEditorFuncNum")
-    if request.method == 'POST' and 'upload' in request.files:
-        fileobj = request.files['upload']
-        fname, fext = os.path.splitext(fileobj.filename)
-        rnd_name = '%s%s' % (gen_rnd_filename(), fext)
-        filepath = os.path.join(current_app.static_folder, 'upload', rnd_name)
-        #check path exists or create path
-        dirname = os.path.dirname(filepath)
-        if not os.path.exists(dirname):
-            try:
-                os.makedirs(dirname)
-            except:
-                error = 'ERROR_CREATE_DIR'
-        elif not os.access(dirname, os.W_OK):
-            error = 'ERROR_DIR_NOT_WRITEABLE'
-        if not error:
-            fileobj.save(filepath)
-            url = url_for('static', filename='%s/%s' % ('upload', rnd_name))
-    else:
-        error = 'post error'
-    res = """<script type="text/javascript">
-  window.parent.CKEDITOR.tools.callFunction(%s, '%s', '%s');
-</script>""" % (callback, url, error)
-    response = make_response(res)
-    response.headers["Content-Type"] = "text/html"
+    form = PostForm()
+    response = form.upload(endpoint=current_app)
     return response
-
-################
 
 @forum.route("/")
 def index():

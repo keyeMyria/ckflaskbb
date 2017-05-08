@@ -46,7 +46,9 @@
 
             <div class="settings-search">
                 <form class="search-form" role="form" method="post">
+				
                     {{ search_form.hidden_tag() }}
+				
                     <div class="input-group">
                         {{ group_field(search_form.search_query, css_class="form-control") }}
                         <span class="input-group-btn">

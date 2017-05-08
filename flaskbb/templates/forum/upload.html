@@ -1,0 +1,30 @@
+{% extends theme("layout.html") %}
+
+{% block title %}Index{% endblock title %}
+
+{% block content %}
+
+<h2>New Post</h2>
+{% if form %}
+
+<form action="#" method=POST enctype=multipart/form-data>
+	{{ form.hidden_tag() }}
+<dl>
+
+<dt>Title
+    <dd><input type=text name=title>
+
+<dt>File
+    <dd><input type=file name=upload>
+
+<dt>Caption
+    <dd><textarea name=caption rows=2 cols=40></textarea>
+
+</dl>
+
+<p><input type=submit value=Post>
+
+</form>
+{%endif%}
+
+{% endblock content %}
